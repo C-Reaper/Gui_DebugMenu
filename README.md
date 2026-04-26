@@ -1,193 +1,99 @@
-# Gui_DebugMenu
+## Overview
+This project is a C/C++ application designed to demonstrate the use of custom language components and libraries. It includes a main entry point `Main.c` and several header files that define various functionalities.
 
+## Features
+- Custom Language Components: The project uses custom language components defined in the `code/` directory, such as `.alxml` files.
+- Multi-platform Support: The project supports building for Linux, Windows, Wine (Linux cross-compile for Windows), and WebAssembly using Emscripten.
+- Modular Architecture: The codebase is organized into source (`src/`) and header (`*.h`) files, promoting modularity.
 
-## Project Overview
-
-This project implements specialized functionality related to debugmenu.
-
-## Core Components
-
-### Main Functionality
-- Implements core algorithms for debugmenu
-- Efficient data structures
-- Optimized performance
-- Clean code organization
-
-### Technical Features
-- C/C++ implementation
-- Dynamic memory management
-- Platform-independent design
-- Real-time capable
-
-### Architecture
-- Module separation
-- Clear interface design
-- Proper abstraction layers
-- Extensible design
-
-## Use Cases
-- Production systems
-- Educational purposes
-- Research applications
-- Performance-critical operations
-
-## Performance Characteristics
-- Optimized algorithms
-- Efficient memory usage
-- Scalable architecture
-- Minimal overhead
-
-## Implementation Quality
-- Well-organized code
-- Meaningful naming
-- Proper error handling
-- Memory management
-
-## Build and Deployment
-- Standard C/C++ compilation
-- Makefile-based building
-- Cross-platform support
-- Easy integration
-
-
-## Building the Project
-
+## Project Structure
 ### Prerequisites
-- C/C++ Compiler (GCC, Clang, or MSVC)
+- C/C++ Compiler and Debugger (GCC, Clang)
 - Make utility
 - Standard development tools
+- Libraries needed in specific projects:
+  - Wine Build configuration: `libwinpthread-1.dll` for Windows support.
+  - Webassembly Build configuration: Emscripten SDK.
 
-### Build Steps
+## Build & Run
+### Linux
+To build and run the application on Linux, follow these steps:
 
-1. Navigate to project directory:
-```bash
-cd Gui_DebugMenu
-```
+1. **Build**:
+   ```sh
+   cd <Project>
+   make -f Makefile.linux all
+   ```
 
-2. Build the project:
-```bash
-make -f Makefile.(os) all
-```
+2. **Clean Rebuild**:
+   ```sh
+   make -f Makefile.linux clean
+   make -f Makefile.linux all
+   ```
 
-3. For clean rebuild:
-```bash
-make -f Makefile.(os) clean
-make -f Makefile.(os) all
-```
+3. **Execute**:
+   ```sh
+   make -f Makefile.linux exe
+   ```
 
-4. If there are ./bin and ./libs directories, build libs with:
-```bash
-make -f Makefile.(os) cleanlib
-make -f Makefile.(os) lib
-```
+### Windows
+To build and run the application on Windows, follow these steps:
 
-### Build Options
-```bash
-make -f Makefile.(os) all         # build output
-make -f Makefile.(os) do        # build + exe output
-make -f Makefile.(os) clean   # Remove build artifacts
-```
+1. **Build**:
+   ```sh
+   cd <Project>
+   make -f Makefile.windows all
+   ```
 
-## Running the Project
+2. **Clean Rebuild**:
+   ```sh
+   make -f Makefile.windows clean
+   make -f Makefile.windows all
+   ```
 
-Execute the compiled binary:
+3. **Execute**:
+   ```sh
+   make -f Makefile.windows exe
+   ```
 
-```bash
-./build/Main(.exe)
-```
+### Wine (Linux Cross-Compile for Windows)
+To build the application on Linux using Wine, follow these steps:
 
-Or using make:
-```bash
-make -f Makefile.(os) exe
-```
+1. **Build**:
+   ```sh
+   cd <Project>
+   make -f Makefile.wine all
+   ```
 
-## Project Organization
+2. **Clean Rebuild**:
+   ```sh
+   make -f Makefile.wine clean
+   make -f Makefile.wine all
+   ```
 
-```
-Gui_DebugMenu/
-├── src/
-│   ├── Main.c          # Entry point
-│   └── *.c             # Implementation files
-├── Makefile            # Build configuration
-└── README.md           # This file
-```
+3. **Execute**:
+   ```sh
+   make -f Makefile.wine exe
+   ```
 
-## Technical Details
+### Webassembly (Emscripten)
+To build the application for the web using Emscripten, follow these steps:
 
-### Language: C/C++
-- Performance-oriented
-- Direct hardware access where needed
-- Memory efficient
-- Widely portable
+1. **Build**:
+   ```sh
+   cd <Project>
+   emmake make -f Makefile.web all
+   ```
 
-### Key Technologies
-- Standard C library
-- System-specific libraries as needed
-- Algorithm optimization
-- Efficient data structures
+2. **Clean Rebuild**:
+   ```sh
+   make -f Makefile.web clean
+   emmake make -f Makefile.web all
+   ```
 
-### Code Quality
-- Clean, readable implementation
-- Proper error handling
-- Resource management
-- Well-documented algorithms
-
-## Development Notes
-
-### Architecture Decisions
-- Modular design for reusability
-- Efficient algorithms for performance
-- Clear separation of concerns
-- Extensible structure
-
-### Performance Optimizations
-- Algorithm efficiency
-- Memory layout optimization
-- Cache-conscious programming
-- Minimal overhead
-
-### Portability
-- Cross-platform compatible
-- Platform-specific optimizations where possible
-- Standard library usage
-- No external dependencies (where feasible)
-
-## Troubleshooting
-
-### Build Issues
-- Ensure compiler is installed
-- Check file paths and permissions
-- Verify Make installation
-- Review compiler error messages
-
-### Runtime Issues
-- Check input data validity
-- Verify file accessibility
-- Ensure sufficient memory
-- Review output format
-
-### Performance Issues
-- Check compiler optimization flags
-- Profile hot code paths
-- Review algorithm complexity
-- Consider input size
-
-## Future Improvements
-
-Potential enhancements:
-- Additional optimization opportunities
-- Extended functionality
-- Platform-specific optimizations
-- Performance profiling
-
-## References
-
-For technical background:
-- Algorithm textbooks
-- Computer science references
-- Language documentation
-- Online educational resources
+3. **Execute**:
+   Open the generated HTML file in a web browser to run the application.
 
 ---
 
-*Project implementing practical algorithms and data structures in C/C++*
+This README provides a comprehensive overview of the project, its features, and instructions on how to build and execute it across different platforms.
