@@ -48,8 +48,11 @@ void DebugAlxWindow_Setup(DebugWindow* dw){
 
 }
 void DebugAlxWindow_Update(DebugWindow* dw,double ElapsedTime){
-    Scene_Update(&dw->scene,dw->w.Strokes,(Vec2){ dw->w.MouseX,dw->w.MouseY },(Vec2){ dw->w.MouseBeforeX,dw->w.MouseBeforeY });
-	Graphics_Clear(dw->w.Buffer,dw->w.Width,dw->w.Height,BLACK);
+    Scene_Adapt(&dw->scene,dw->w.Width,dw->w.Height);
+    Scene_Update(&dw->scene);
+    Scene_Input(&dw->scene,dw->w.Strokes,(Vec2){ dw->w.MouseX,dw->w.MouseY },(Vec2){ dw->w.MouseBeforeX,dw->w.MouseBeforeY });
+	
+    Graphics_Clear(dw->w.Buffer,dw->w.Width,dw->w.Height,BLACK);
 	Scene_Render(dw->w.Buffer,dw->w.Width,dw->w.Height,&dw->scene);
 }
 void DebugAlxWindow_Delete(DebugWindow* dw){
@@ -64,7 +67,11 @@ void* DebugAlxWindow_Executer(void* a){
 DebugWindow DebugAlxWindow_New(char* File_alxml,void (*DebugAlxWindow_EventHandler)(void*,void*,EventId*)){
     DebugWindow dw;
     
-    dw.scene = Scene_New();
+    dw.scene = Scene_New(
+        NULL,
+        (Rect){ 0.0f,0.0f,1.0f,1.0f },
+        BLACK
+    );
 
 	dw.cml = ComponentML_New(
         KeywordMap_Make((KeywordRP[]){
